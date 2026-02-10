@@ -1,0 +1,187 @@
+<html lang="pt-BR">
+  <head>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="basehinos.js"></script>
+    <script src="titulos.js"></script>
+  </head>
+  <body>
+
+    <div id="mydiv"></div>
+
+    <script type="text/babel">
+    
+    const { useState } = React;
+    
+    function Hello() {
+        return <h1 style={{ textAlign: "center"}}>Letra Hinos e Cifra Melódica</h1>;
+    }
+
+    function Home({erro, onBuscar}) {
+         const [entrada, setEntrada] = useState("");
+         return (
+              <>
+                    <h2>Qual a Música?</h2>
+
+                  <input
+                    type="text"
+                    value={entrada}
+                    onChange={(e) => setEntrada(e.target.value)}
+                    style={{ padding: "8px", marginRight: "10px" }}
+                  />
+
+                  <button onClick={() => onBuscar(entrada)}>
+                    Buscar
+                  </button>
+
+                  {erro && <p style={{ color: "red" }}>{erro}</p>}
+              </>
+         );
+    }
+
+    function Musica({
+                  numero,
+                  musica,
+                  estrofeAtual,
+                  onProximo,
+                  onVoltar,
+                  onHome,
+                }) {
+          return (
+              <>
+                <h3>Música #{numero}</h3>
+
+                <Estrofe versos={musica} />
+
+                <div style={{ display: "flex", gap: "10px", justifyContent: "center" }}>
+                  <button onClick={onVoltar} disabled={estrofeAtual === 0}>
+                    Voltar
+                  </button>
+
+                  <button
+                    onClick={onProximo}
+                    disabled={estrofeAtual === musica.length - 1}
+                  >
+                    Prosseguir
+                  </button>
+
+                  <button onClick={onHome}>
+                    Home
+                  </button>
+                </div>
+              </>
+            );
+    }
+
+    function Estrofe({ versos }) {
+  return (
+    <div style={{ marginBottom: "30px", fontSize: "18px" }}>
+      {versos.map((verso, index) => (
+        <p key={index}>{verso}</p>
+      ))}
+    </div>
+  );
+}
+
+    function App() {
+      const [tela, setTela] = useState("home");
+      const [valor, setValor] = useState("");
+      const [erro, setErro] = useState("");
+      const [estrofeAtual, setEstrofeAtual] = useState(0);
+      const [versos, setVersos] = useState([]);
+
+      let musica = [
+          [
+            "Verso 1 da estrofe 1",
+            "Verso 2 da estrofe 1",
+            "Verso 3 da estrofe 1",
+            "Verso 4 da estrofe 1",
+          ],
+          [
+            "Verso 1 da estrofe 2",
+            "Verso 2 da estrofe 2",
+            "Verso 3 da estrofe 2",
+            "Verso 4 da estrofe 2",
+          ],
+          [
+            "Verso 1 da estrofe 3",
+            "Verso 2 da estrofe 3",
+            "Verso 3 da estrofe 3",
+            "Verso 4 da estrofe 3",
+          ],
+        ];
+
+        const validarEntrada = (entrada) => {
+          if (!/^\d+$/.test(entrada)) {
+            setErro("entrada invalida, so aceita numeros");
+            return;
+          }
+
+          const numero = Number(entrada);
+          if (numero <= 0 || numero > 600) {
+            setErro("entrada invalida, permite numeros entre 1 e 600 apenas");
+            return;
+          }
+
+          musica = basehinos[numero];
+          setValor(entrada);
+          setErro("");
+          setEstrofeAtual(0);
+          setVersos(musica[estrofeAtual].split("|"));
+          setTela("musica");
+        };
+
+        const voltarHome = () => {
+          setTela("home");
+          setValor("");
+          setErro("");
+          setEstrofeAtual(0);
+        };
+
+        const proximo = () => {
+            musica = basehinos[valor];
+            setEstrofeAtual(e => e + 1);
+            setVersos(musica[estrofeAtual].split("|"));
+        } 
+
+        const anterior = () => {
+          setEstrofeAtual(e => e - 1);
+          musica = basehinos[valor];
+          setVersos(musica[estrofeAtual].split("|"));
+        } 
+
+          return (
+              <>
+                  <Hello />
+                 <div style={{ textAlign: "center", marginTop: "80px" }}>
+                 {tela === "home" && (
+                 <Home
+                    erro={erro}
+                    onBuscar={validarEntrada}
+                  />
+      )}
+
+      {tela === "musica" && (
+                 <Musica
+                    numero={valor}
+                    musica={versos}
+                    estrofeAtual={estrofeAtual}
+                    onProximo={proximo}
+                    onVoltar={anterior}
+                    onHome={voltarHome}
+                  />
+      )}
+    </div>
+              </>
+          );
+     }
+
+    
+     const container = document.getElementById('mydiv');
+     const root = ReactDOM.createRoot(container);
+     root.render(<App />)
+    
+    </script>
+  </body>
+</html>
