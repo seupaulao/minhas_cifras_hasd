@@ -8,11 +8,11 @@ import { useState } from 'react'
 
 function App() {
       const [tela, setTela] = useState("home");
-      const [valor, setValor] = useState("");
+      const [_, setValor] = useState("");
       const [erro, setErro] = useState("");
       const [estrofeAtual, setEstrofeAtual] = useState(0);
       const [versos, setVersos] = useState([]);
-      const [_, setMusica] = useState([]);
+      const [musica, setMusica] = useState([]);
       const [titulo, setTitulo] = useState("");
 
       
@@ -43,6 +43,7 @@ function App() {
           setEstrofeAtual(0);
           setVersos(v1);
           setTela("musica");
+          console.log(estrofeAtual);
         };
 
         const voltarHome = () => {
@@ -51,24 +52,28 @@ function App() {
           setErro("");
           setEstrofeAtual(0);
           setTitulo("");
+          setMusica([]);
+          setVersos([]);
         };
 
         const proximo = () => {
-            setEstrofeAtual(e => e + 1);
-            const m1 = basehinos[valor];
-            const v1 = m1[estrofeAtual].split("|");
-            setMusica(m1);
-            setTitulo(titulohinos[valor]);
-            setVersos(v1);
+            setEstrofeAtual(estrofeAtual + 1);
+           // console.log("Atual ==", estrofeAtual);
+            const m1 = musica;
+            if (estrofeAtual >= 0) {
+              const v1 = m1[estrofeAtual].split("|");
+              setVersos(v1);
+            }
         } 
 
         const anterior = () => {
-          setEstrofeAtual(e => e - 1);
-          const m1 = basehinos[valor];
-          const v1 = m1[estrofeAtual].split("|");          
-          setMusica(m1);
-          setTitulo(titulohinos[valor]);
-          setVersos(v1);
+          setEstrofeAtual(estrofeAtual - 1);
+          //console.log("Atual ==", estrofeAtual);
+          const m1 = musica;
+           if (estrofeAtual < musica.length) {
+              const v1 = m1[estrofeAtual].split("|");
+              setVersos(v1);
+            }
         } 
 
 

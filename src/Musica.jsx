@@ -14,13 +14,13 @@ function Musica({
                 <Estrofe versos={musica} />
 
                 <div style={{ display: "flex", gap: "10px", justifyContent: "center" }}>
-                  <button onClick={onVoltar} disabled={estrofeAtual === 0}>
+                  <button onClick={onVoltar} disabled={estrofeAtual < 0}>
                     Voltar
                   </button>
 
                   <button
                     onClick={onProximo}
-                    disabled={estrofeAtual === musica.length - 1}
+                    disabled={estrofeAtual >= musica.length - 1}
                   >
                     Prosseguir
                   </button>
