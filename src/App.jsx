@@ -11,7 +11,7 @@ function App() {
       const [_, setValor] = useState("");
       const [erro, setErro] = useState("");
       const [estrofeAtual, setEstrofeAtual] = useState(0);
-      const [versos, setVersos] = useState([]);
+      // const [versos, setVersos] = useState([]);
       const [musica, setMusica] = useState([]);
       const [titulo, setTitulo] = useState("");
 
@@ -34,16 +34,21 @@ function App() {
 
           const m1 = basehinos[entrada];
           const t1 = titulohinos[entrada];
-          const v1 = m1[estrofeAtual].split("|");
-          console.log(t1,'\n',m1); 
+          // const v1 = m1[estrofeAtual].split("|");
+          let novosversos = [];
+          for (let i = 0; i < m1.length; i++) {
+                const v = m1[i].split("|");
+                novosversos.push(v); 
+          } 
+          console.log(novosversos); 
           setValor(entrada);
-          setMusica(m1);
+          setMusica(novosversos);
           setTitulo(t1);
           setErro("");
           setEstrofeAtual(0);
-          setVersos(v1);
+          // setVersos(novosversos);
           setTela("musica");
-          console.log(estrofeAtual);
+          // console.log(estrofeAtual);
         };
 
         const voltarHome = () => {
@@ -53,28 +58,28 @@ function App() {
           setEstrofeAtual(0);
           setTitulo("");
           setMusica([]);
-          setVersos([]);
+          // setVersos([]);
         };
 
-        const proximo = () => {
-            setEstrofeAtual(estrofeAtual + 1);
-           // console.log("Atual ==", estrofeAtual);
-            const m1 = musica;
-            if (estrofeAtual >= 0) {
-              const v1 = m1[estrofeAtual].split("|");
-              setVersos(v1);
-            }
-        } 
+        // const proximo = () => {
+        //     setEstrofeAtual(e => e + 1);
+        //    console.log("Atual ==", estrofeAtual);
+        //     const m1 = musica;
+        //     if (estrofeAtual >= 0) {
+        //       const v1 = m1[estrofeAtual].split("|");
+        //       setVersos(v1);
+        //     }
+        // } 
 
-        const anterior = () => {
-          setEstrofeAtual(estrofeAtual - 1);
-          //console.log("Atual ==", estrofeAtual);
-          const m1 = musica;
-           if (estrofeAtual < musica.length) {
-              const v1 = m1[estrofeAtual].split("|");
-              setVersos(v1);
-            }
-        } 
+        // const anterior = () => {
+        //   setEstrofeAtual(e => e - 1);
+        //   console.log("Atual ==", estrofeAtual);
+        //   const m1 = musica;
+        //    if (estrofeAtual < musica.length) {
+        //       const v1 = m1[estrofeAtual].split("|");
+        //       setVersos(v1);
+        //     }
+        // } 
 
 
   return (
@@ -91,10 +96,10 @@ function App() {
       {tela === "musica" && (
                  <Musica
                     titulo={titulo} 
-                    musica={versos}
+                    musica={musica}
                     estrofeAtual={estrofeAtual}
-                    onProximo={proximo}
-                    onVoltar={anterior}
+                    onProximo={() => setEstrofeAtual(e => e + 1)}
+                    onVoltar={() => setEstrofeAtual(e => e - 1)}
                     onHome={voltarHome}
                   />
       )}

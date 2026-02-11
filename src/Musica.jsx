@@ -11,7 +11,7 @@ function Musica({
               <>
                 <h3>Música {titulo}</h3>
 
-                <Estrofe versos={musica} />
+                <Estrofe versos={musica[estrofeAtual]} />
 
                 <div style={{ display: "flex", gap: "10px", justifyContent: "center" }}>
                   <button onClick={onVoltar} disabled={estrofeAtual < 0}>
