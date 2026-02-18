@@ -1,4 +1,5 @@
-const titulohinos = {"1":"1 - Santo, Santo, Santo",
+const titulohinos = {
+"1":"1 - Santo, Santo, Santo",
 "2":"2 - Ó Adorai o Senhor",
 "3":"3 - O Deus Eterno Reina",
 "4":"4 - Louvor ao Trino Deus",

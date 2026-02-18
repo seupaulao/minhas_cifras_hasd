@@ -61,25 +61,7 @@ function App() {
           // setVersos([]);
         };
 
-        // const proximo = () => {
-        //     setEstrofeAtual(e => e + 1);
-        //    console.log("Atual ==", estrofeAtual);
-        //     const m1 = musica;
-        //     if (estrofeAtual >= 0) {
-        //       const v1 = m1[estrofeAtual].split("|");
-        //       setVersos(v1);
-        //     }
-        // } 
-
-        // const anterior = () => {
-        //   setEstrofeAtual(e => e - 1);
-        //   console.log("Atual ==", estrofeAtual);
-        //   const m1 = musica;
-        //    if (estrofeAtual < musica.length) {
-        //       const v1 = m1[estrofeAtual].split("|");
-        //       setVersos(v1);
-        //     }
-        // } 
+      
 
 
   return (
