@@ -114,7 +114,9 @@ const cifras = {
 "498" : {"escala": "C", "estrofes": [["si2 do re mi, re mi la sol mi re-do-la2...", "do mi fa sol, la sol mi do mi re", "si2 do re mi, re mi la sol mi re-do-la2...","si do re mi, fa mi re do re do"], ["sol la si Do, si3 si la sol la sol mi do", "sol la si Do, si si la sol mi re", "sol sol sol Mi, Re Re Do la Do sol-mi-do", "si2 do re mi la sol mi re do la2 si2 do"] ] },
 "499": {"escala": "C", "estrofes": [["", "", "", ""]]},
 "500": {"escala": "C", "estrofes": [["", "", "", ""]]},
-"600": {"escala": "C", "estrofes": [["", "", "", ""]]},
+"598": {"escala": "C", "estrofes": [["mi mi..fa sol la,^sol sol, sol sol..fa mi sol,^fa fa fa fa..", "sol fa fa^mi mi, mi mi..re do mi^re re, mi mi..", "fa sol la^sol sol, sol Re..Do, mi sol,^fa fa, fa fa...", "sol fa fa^mi mi, mi re do do la do..."]]},
+"599": {"escala": "D", "estrofes": [["mi fa#_sol la..la sol_fa# mi re si2..re re_mi fa#..mi fa# re..", "la2 fa# mi fa#...fa# sol fa#", "mi re re si la si..si Do# si sol..", "mi fa# sol la..la sol fa# mi re, re re mi fa#..mi fa re..."]]},
+"600": {"escala": "E", "estrofes": [["mi fa# re# do#, mi mi fa# fa#, sol# sol#..", "mi si re# do#..Do# si la si..", "mi mi si si..la.. la sol# fa# fa#..mi..", "mi mi fa# sol#...mi fa#..mi mi...", "fa# sol# mi re#..fa# fa# sol#", "sol#, la la.. fa# Do# mi re#...Re# Do# si si..la..", "fa# fa# Do# Do#..si..si la sol# sol#..fa#..", "fa# fa# sol# la..fa# sol#..fa# fa#...", "fa# fa# Do# Do#..si..si la sol# sol#..fa#..", "fa# fa# sol# la..fa# sol#..fa# fa#..."]]},
 
 
 
